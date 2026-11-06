@@ -105,10 +105,10 @@ $emoji = [0 => '❔', 1 => '🍸', 2 => '🎶', 3 => '🔥'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0b0714">
+    <meta name="theme-color" content="#120b0b">
     <title>Panel del local · Borra2</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/app.css?v=2">
 </head>
 <body class="pagina">
 <header class="barra">

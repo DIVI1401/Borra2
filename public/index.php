@@ -9,13 +9,13 @@ $config = ['centro' => centro_mapa(), 'demo' => demo()];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#0b0714">
+    <meta name="theme-color" content="#120b0b">
     <title>Borra2 · Tu noche, mejor dirigida</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <link rel="stylesheet" href="assets/app.css">
+    <link rel="stylesheet" href="assets/app.css?v=2">
 </head>
 <body class="app">
 <header class="barra">
@@ -70,6 +70,6 @@ $config = ['centro' => centro_mapa(), 'demo' => demo()];
 
 <script>window.BORRA2 = <?= json_encode($config) ?>;</script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="assets/mapa.js"></script>
+<script src="assets/mapa.js?v=2"></script>
 </body>
 </html>
