@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: borra2
+    runtime: docker
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: borra2-db
+          property: connectionString
+      - key: DEMO_MODO
+        value: "1"
+
+databases:
+  - name: borra2-db
+    plan: free

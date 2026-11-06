@@ -1,0 +1,143 @@
+<?php
+/**
+ * Datos de ejemplo para la demo de clase.
+ * Los nombres de los locales son INVENTADOS y las coordenadas son aproximadas
+ * (zona norte de Montería). Para cambiarlos, edita este archivo y borra
+ * data/borra2.sqlite (o la base de datos en Render) para que se vuelvan a cargar.
+ *
+ * Panel de discotecas: el usuario de cada local es su "slug" (ej. neon41)
+ * y todos usan la clave de prueba de abajo.
+ */
+return [
+    'centro' => [8.7805, -75.8705],
+    'clave_demo' => 'borra2demo',
+    'locales' => [
+        [
+            'slug' => 'neon41', 'nombre' => 'Neón 41', 'tipo' => 'Discoteca', 'musica' => 'Reggaetón',
+            'lat' => 8.7838, 'lng' => -75.8689, 'direccion' => 'Calle 41 con Circunvalar',
+            'cover' => 20000, 'precio_trago' => 15000, 'horario' => 'Jue a sáb · 9 p. m. – 3 a. m.',
+            'descripcion' => 'La discoteca más prendida del norte: luces neón, DJ residente y pista grande.',
+            'ambiente' => 'Joven, universitario, mucha energía', 'vestimenta' => 'Casual elegante',
+            'popularidad' => 3,
+            'promos' => [['2x1 en cócteles antes de las 11 p. m.', 'Aplica para mojito, piña colada y margarita.']],
+            'resenas' => [
+                ['Valentina', 5, 'El mejor DJ de Montería, la pista siempre llena.', 1],
+                ['Andrés', 4, 'Muy bueno pero a la 1 a. m. ya no cabe un alma.', 1],
+            ],
+        ],
+        [
+            'slug' => 'corralvallenato', 'nombre' => 'El Corral Vallenato', 'tipo' => 'Bar', 'musica' => 'Vallenato',
+            'lat' => 8.7812, 'lng' => -75.8661, 'direccion' => 'Carrera 6 # 45-20',
+            'cover' => 0, 'precio_trago' => 9000, 'horario' => 'Mié a dom · 6 p. m. – 2 a. m.',
+            'descripcion' => 'Parranda vallenata en vivo con acordeón y caja todos los fines de semana.',
+            'ambiente' => 'Familiar y parrandero, todas las edades', 'vestimenta' => 'Casual',
+            'popularidad' => 2,
+            'promos' => [['Cubeta de 6 cervezas a $36.000', 'Todo el día.']],
+            'resenas' => [['Carlos', 5, 'La parranda del viernes es lo máximo.', 1]],
+        ],
+        [
+            'slug' => 'kalor', 'nombre' => 'Kalor Champeta Bar', 'tipo' => 'Bar', 'musica' => 'Champeta',
+            'lat' => 8.7858, 'lng' => -75.8712, 'direccion' => 'Calle 44 # 8-15',
+            'cover' => 10000, 'precio_trago' => 10000, 'horario' => 'Vie y sáb · 8 p. m. – 3 a. m.',
+            'descripcion' => 'Picó, champeta y terraza al aire libre.',
+            'ambiente' => 'Bailador, mucha gozadera', 'vestimenta' => 'Casual',
+            'popularidad' => 2,
+            'promos' => [],
+            'resenas' => [['Mafe', 4, 'Buena música, el sonido está brutal.', 0]],
+        ],
+        [
+            'slug' => 'altura', 'nombre' => 'Altura Rooftop', 'tipo' => 'Rooftop', 'musica' => 'Crossover',
+            'lat' => 8.7795, 'lng' => -75.8730, 'direccion' => 'Avenida Primera, piso 8',
+            'cover' => 30000, 'precio_trago' => 22000, 'horario' => 'Jue a sáb · 7 p. m. – 2 a. m.',
+            'descripcion' => 'Terraza con vista a la Ronda del Sinú y coctelería de autor.',
+            'ambiente' => 'Tranquilo y elegante, ideal para conversar', 'vestimenta' => 'Elegante',
+            'popularidad' => 1,
+            'promos' => [['Happy hour de 7 a 9 p. m.', '30 % de descuento en coctelería de la casa.']],
+            'resenas' => [
+                ['Sebastián', 5, 'La vista al río de noche es otra cosa.', 1],
+                ['Laura', 3, 'Bonito pero caro.', 0],
+            ],
+        ],
+        [
+            'slug' => 'laclave', 'nombre' => 'Salsoteca La Clave', 'tipo' => 'Bar', 'musica' => 'Salsa',
+            'lat' => 8.7769, 'lng' => -75.8684, 'direccion' => 'Calle 36 # 4-50',
+            'cover' => 10000, 'precio_trago' => 11000, 'horario' => 'Jue a sáb · 8 p. m. – 2 a. m.',
+            'descripcion' => 'Salsa brava y clases gratis los jueves a las 8 p. m.',
+            'ambiente' => 'Bailarines de todas las edades', 'vestimenta' => 'Casual',
+            'popularidad' => 2,
+            'promos' => [['Clase de salsa gratis los jueves', 'De 8 a 9 p. m., sin reserva.']],
+            'resenas' => [['Don Jaime', 5, 'Aquí se baila salsa de verdad.', 1]],
+        ],
+        [
+            'slug' => 'distritonorte', 'nombre' => 'Distrito Norte', 'tipo' => 'Discoteca', 'musica' => 'Crossover',
+            'lat' => 8.7881, 'lng' => -75.8676, 'direccion' => 'Circunvalar # 50-10',
+            'cover' => 25000, 'precio_trago' => 16000, 'horario' => 'Vie y sáb · 10 p. m. – 4 a. m.',
+            'descripcion' => 'Dos ambientes: crossover en la principal y reggaetón en la terraza.',
+            'ambiente' => 'Mixto, 20 a 35 años', 'vestimenta' => 'Casual elegante',
+            'popularidad' => 3,
+            'promos' => [['Mesa VIP con botella', 'Reserva por la app y te esperan en la puerta.']],
+            'resenas' => [['Juliana', 4, 'Muy buen ambiente, la fila es larga después de las 12.', 1]],
+        ],
+        [
+            'slug' => 'lunaroja', 'nombre' => 'Luna Roja', 'tipo' => 'Bar', 'musica' => 'Reggaetón',
+            'lat' => 8.7826, 'lng' => -75.8741, 'direccion' => 'Carrera 2 # 42-30',
+            'cover' => 0, 'precio_trago' => 12000, 'horario' => 'Mié a sáb · 7 p. m. – 2 a. m.',
+            'descripcion' => 'Bar pequeño para calentar motores antes de la discoteca.',
+            'ambiente' => 'Parches de amigos, precoteo', 'vestimenta' => 'Casual',
+            'popularidad' => 2,
+            'promos' => [['Shots a $5.000 los miércoles', 'Aguardiente, tequila o ron.']],
+            'resenas' => [],
+        ],
+        [
+            'slug' => 'parrandero', 'nombre' => 'Café Parrandero', 'tipo' => 'Bar', 'musica' => 'Vallenato',
+            'lat' => 8.7752, 'lng' => -75.8712, 'direccion' => 'Calle 32 con Avenida Primera',
+            'cover' => 0, 'precio_trago' => 8000, 'horario' => 'Todos los días · 5 p. m. – 1 a. m.',
+            'descripcion' => 'Cerveza fría, vallenato clásico y mesas afuera.',
+            'ambiente' => 'Relajado, de conversa', 'vestimenta' => 'Casual',
+            'popularidad' => 1,
+            'promos' => [],
+            'resenas' => [['Pedro', 4, 'Barato y con buena música vieja.', 0]],
+        ],
+        [
+            'slug' => 'pulso', 'nombre' => 'Pulso Electro Club', 'tipo' => 'Discoteca', 'musica' => 'Electrónica',
+            'lat' => 8.7899, 'lng' => -75.8714, 'direccion' => 'Calle 52 # 9-40',
+            'cover' => 35000, 'precio_trago' => 18000, 'horario' => 'Sáb · 10 p. m. – 5 a. m.',
+            'descripcion' => 'House y techno con DJs invitados cada mes.',
+            'ambiente' => 'Alternativo, amantes de la electrónica', 'vestimenta' => 'Libre',
+            'popularidad' => 1,
+            'promos' => [['Cover gratis antes de las 11 p. m.', 'Mostrando la app en la puerta.']],
+            'resenas' => [['Nico', 5, 'Por fin electrónica buena en Montería.', 1]],
+        ],
+        [
+            'slug' => 'barriobar', 'nombre' => 'Barrio Bar', 'tipo' => 'Bar', 'musica' => 'Champeta',
+            'lat' => 8.7787, 'lng' => -75.8655, 'direccion' => 'Carrera 7 # 38-12',
+            'cover' => 0, 'precio_trago' => 9000, 'horario' => 'Jue a sáb · 7 p. m. – 2 a. m.',
+            'descripcion' => 'Esquinero, con picó y mucha champeta africana.',
+            'ambiente' => 'Popular y bailador', 'vestimenta' => 'Casual',
+            'popularidad' => 2,
+            'promos' => [],
+            'resenas' => [],
+            'verificado' => 0,
+        ],
+        [
+            'slug' => 'caracola', 'nombre' => 'Caracola Lounge', 'tipo' => 'Lounge', 'musica' => 'Crossover',
+            'lat' => 8.7864, 'lng' => -75.8748, 'direccion' => 'Avenida Primera # 47-05',
+            'cover' => 15000, 'precio_trago' => 17000, 'horario' => 'Jue a sáb · 7 p. m. – 2 a. m.',
+            'descripcion' => 'Lounge con sofás, shishas y música suave al principio de la noche.',
+            'ambiente' => 'Tranquilo, para grupos', 'vestimenta' => 'Casual elegante',
+            'popularidad' => 1,
+            'promos' => [['Botella + mezcladores con 15 % off', 'Reservando mesa para 6 o más.']],
+            'resenas' => [['Camila', 4, 'Rico para empezar la noche.', 1]],
+        ],
+        [
+            'slug' => 'tumbao', 'nombre' => 'Tumbao Club', 'tipo' => 'Discoteca', 'musica' => 'Salsa',
+            'lat' => 8.7845, 'lng' => -75.8634, 'direccion' => 'Carrera 9 # 46-60',
+            'cover' => 15000, 'precio_trago' => 13000, 'horario' => 'Vie y sáb · 9 p. m. – 3 a. m.',
+            'descripcion' => 'Salsa, merengue y bachata con orquesta en vivo los sábados.',
+            'ambiente' => 'Adultos, 25 años en adelante', 'vestimenta' => 'Casual elegante',
+            'popularidad' => 2,
+            'promos' => [['Orquesta en vivo este sábado', 'Desde las 11 p. m.']],
+            'resenas' => [['Rosa', 5, 'La orquesta de los sábados es espectacular.', 1]],
+        ],
+    ],
+];
