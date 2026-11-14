@@ -20,7 +20,7 @@ App web para ver en vivo qué tan llenos están los bares y discotecas de la zon
 
 - [x] **Fase 1 · Autenticación:** registro con contraseña segura, verificación de correo obligatoria (con límite de reenvíos), inicio de sesión con "recordarme", Google, recuperar contraseña, cambio de correo y contraseña con reautenticación, eliminar cuenta y datos, roles por custom claims, rutas protegidas, página propia en español para los enlaces de los correos.
 - [x] **Fase 2 · Datos y seguridad:** modelo completo de Firestore, Security Rules de todas las colecciones (42 pruebas automáticas), índices, semáforo y calificación calculados en el servidor, API de reportes, reseñas y estado del local, carga de los 12 locales de ejemplo. Detalle en [docs/modelo-de-datos.md](docs/modelo-de-datos.md).
-- [ ] Fase 3 · Mapa, fichas, reportes y reseñas
+- [x] **Fase 3 · Funciones principales:** mapa en vivo (OpenStreetMap) con semáforo, filtros (ambiente, abierto ahora, cover, género, favoritos) y lista ordenada por cercanía; ficha de cada local con SEO propio, promociones, horario, reportes "¿cómo está esto?", reseñas paginadas y favoritos; compartir ubicación en vivo con amigos; botón SOS (123); modo demo que simula reportes para la presentación.
 - [ ] Fase 4 · Panel del local y panel de administración
 - [ ] Fase 5 · Pulido, guía de despliegue y lista de verificación
 

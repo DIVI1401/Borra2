@@ -69,10 +69,16 @@ service cloud.firestore {
     // ---------- Configuración global: settings/app ----------
     match /settings/{docId} {
       allow read: if true;
-      allow write: if isAdmin() && docId == 'app'
+      // El admin solo cambia el interruptor del modo demo (el resto lo maneja el servidor).
+      allow create: if isAdmin() && docId == 'app'
         && data().keys().hasOnly(['demoMode', 'updatedAt'])
         && data().demoMode is bool
         && data().updatedAt == request.time;
+      allow update: if isAdmin() && docId == 'app'
+        && onlyChanges(['demoMode', 'updatedAt'])
+        && data().demoMode is bool
+        && data().updatedAt == request.time;
+      allow delete: if false;
     }
 
     // ---------- Perfiles: users/{uid} ----------

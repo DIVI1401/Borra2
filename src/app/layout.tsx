@@ -42,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <Providers>
           <SiteHeader />
-          <div id="contenido" className="flex flex-1 flex-col">
+          <div id="contenido" className="flex min-w-0 flex-1 flex-col">
             {children}
           </div>
         </Providers>
