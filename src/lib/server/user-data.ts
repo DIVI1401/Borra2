@@ -1,25 +1,38 @@
 import "server-only";
 
 import { adminDb } from "@/lib/firebase/admin";
+import { deleteReview } from "@/lib/server/venues";
 
 /**
  * Borra todos los datos personales de una persona (derecho de supresión, Ley 1581).
- * Se va ampliando a medida que la app guarda más cosas por usuario.
+ * Se llama al eliminar la cuenta.
  */
 export async function deleteAllUserData(uid: string): Promise<void> {
-  const userRef = adminDb.collection("users").doc(uid);
-
-  // Subcolecciones y documento del perfil.
-  await adminDb.recursiveDelete(userRef);
-
-  // Reseñas (el id del documento es el uid) y ubicaciones compartidas.
+  // Reseñas: se borran una por una para que el promedio de cada local quede bien.
   const reviews = await adminDb.collectionGroup("reviews").where("uid", "==", uid).get();
-  const shared = await adminDb.collection("sharedLocations").where("uid", "==", uid).get();
+  for (const review of reviews.docs) {
+    const venueId = review.ref.parent.parent?.id;
+    if (venueId) await deleteReview(venueId, uid);
+  }
 
-  const docs = [...reviews.docs, ...shared.docs];
-  for (let i = 0; i < docs.length; i += 400) {
+  // Reportes: se anonimizan (sirven para el historial del local, pero ya no apuntan a la persona).
+  const reports = await adminDb.collectionGroup("reports").where("uid", "==", uid).get();
+  const shared = await adminDb.collection("sharedLocations").where("uid", "==", uid).get();
+  const claims = await adminDb.collection("venueClaims").where("uid", "==", uid).get();
+
+  const ops = [
+    ...reports.docs.map((d) => ({ type: "anon" as const, ref: d.ref })),
+    ...shared.docs.map((d) => ({ type: "delete" as const, ref: d.ref })),
+    ...claims.docs.map((d) => ({ type: "delete" as const, ref: d.ref })),
+  ];
+  for (let i = 0; i < ops.length; i += 400) {
     const batch = adminDb.batch();
-    docs.slice(i, i + 400).forEach((d) => batch.delete(d.ref));
+    ops.slice(i, i + 400).forEach((op) =>
+      op.type === "anon" ? batch.update(op.ref, { uid: "eliminado" }) : batch.delete(op.ref)
+    );
     await batch.commit();
   }
+
+  // Perfil y sus subcolecciones (favoritos).
+  await adminDb.recursiveDelete(adminDb.collection("users").doc(uid));
 }

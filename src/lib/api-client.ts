@@ -3,11 +3,18 @@
 import { auth, getAppCheckToken } from "@/lib/firebase/client";
 import { AppError } from "@/lib/firebase/errors";
 
+interface ApiOptions {
+  /** Pide un token nuevo (necesario justo después de reautenticarse). */
+  forceRefresh?: boolean;
+  /** Por defecto POST si hay cuerpo y GET si no. */
+  method?: "GET" | "POST" | "DELETE";
+}
+
 /**
  * Llama a nuestras rutas de API enviando el token de sesión de Firebase
  * y el token de App Check. El servidor verifica ambos.
  */
-export async function apiFetch<T>(path: string, body?: unknown, options: { forceRefresh?: boolean } = {}): Promise<T> {
+export async function apiFetch<T>(path: string, body?: unknown, options: ApiOptions = {}): Promise<T> {
   const user = auth.currentUser;
   const headers: Record<string, string> = { "Content-Type": "application/json" };
 
@@ -18,7 +25,7 @@ export async function apiFetch<T>(path: string, body?: unknown, options: { force
   let response: Response;
   try {
     response = await fetch(path, {
-      method: body === undefined ? "GET" : "POST",
+      method: options.method ?? (body === undefined ? "GET" : "POST"),
       headers,
       body: body === undefined ? undefined : JSON.stringify(body),
     });
