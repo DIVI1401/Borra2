@@ -95,7 +95,7 @@ En **Authentication → Plantillas**:
 
 ### 2.4 Firestore
 1. **Firestore Database → Crear base de datos**, en **modo de producción**.
-2. Ubicación: `southamerica-east1` (São Paulo), la más cercana a Colombia. **No se puede cambiar después.**
+2. Ubicación: `nam5` (Estados Unidos). Desde Colombia suele responder más rápido que São Paulo y queda cerca de los servidores de Vercel. **No se puede cambiar después.**
 3. Publica las reglas y los índices de este repositorio:
 
 ```bash
