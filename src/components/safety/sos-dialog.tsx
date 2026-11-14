@@ -14,7 +14,7 @@ export function SosButton() {
         size="icon-lg"
         className="rounded-full bg-destructive font-bold text-white shadow-md hover:bg-destructive/90"
         onClick={() => setOpen(true)}
-        aria-label="Ayuda y seguridad"
+        aria-label="SOS: ayuda y seguridad"
       >
         SOS
       </Button>

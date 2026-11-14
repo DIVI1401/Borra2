@@ -25,7 +25,7 @@ const PAGE_SIZE = 5;
 
 function Stars({ value, className }: { value: number; className?: string }) {
   return (
-    <span className={cn("inline-flex", className)} aria-label={`${value} de 5 estrellas`}>
+    <span className={cn("inline-flex", className)} role="img" aria-label={`${value} de 5 estrellas`}>
       {[1, 2, 3, 4, 5].map((n) => (
         <StarIcon key={n} className={cn("size-4", n <= value ? "fill-gold text-gold" : "text-muted-foreground/40")} aria-hidden="true" />
       ))}

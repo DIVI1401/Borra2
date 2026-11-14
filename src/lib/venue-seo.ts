@@ -34,3 +34,34 @@ export async function getVenueSeo(slug: string): Promise<VenueSeo | null> {
     return null;
   }
 }
+
+/** Ids de los locales activos (para el sitemap). Si Firestore no responde, usa los de ejemplo. */
+export async function listPublicVenueIds(): Promise<string[]> {
+  "use cache";
+  cacheLife("hours");
+
+  try {
+    const key = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+    const res = await fetch(`${firestoreBase()}:runQuery?key=${key}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        structuredQuery: {
+          from: [{ collectionId: "venues" }],
+          where: { fieldFilter: { field: { fieldPath: "status" }, op: "EQUAL", value: { stringValue: "active" } } },
+          select: { fields: [{ fieldPath: "name" }] },
+          limit: 100,
+        },
+      }),
+      signal: AbortSignal.timeout(3000),
+    });
+    if (!res.ok) throw new Error(String(res.status));
+    const rows = (await res.json()) as { document?: { name: string } }[];
+    const ids = rows.flatMap((r) => (r.document ? [r.document.name.split("/").pop() ?? ""] : [])).filter(Boolean);
+    if (ids.length) return ids;
+  } catch {
+    // Sin conexión a Firestore durante la compilación: se usan los locales de ejemplo.
+  }
+  const { seedVenues } = await import("../../scripts/seed-data");
+  return seedVenues.map((v) => v.id);
+}

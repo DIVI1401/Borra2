@@ -8,7 +8,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-3 px-4">
         <Logo />
         <span className="hidden text-sm text-muted-foreground sm:inline">Montería · Zona Norte</span>
-        <div className="ml-auto flex items-center gap-1">
+        <div className="ml-auto flex min-w-[12rem] items-center justify-end gap-1">
           <ThemeToggle />
           <UserMenu />
         </div>

@@ -12,7 +12,10 @@
     "set-role": "tsx --env-file=.env.local scripts/set-role.ts",
     "seed": "tsx --env-file=.env.local scripts/seed.ts",
     "test": "vitest run",
-    "test:emu": "firebase emulators:exec --only firestore --project demo-borra2 \"vitest run\""
+    "test:emu": "firebase emulators:exec --only firestore --project demo-borra2 \"vitest run\"",
+    "seed:prod": "tsx --env-file=.env.production.local scripts/seed.ts",
+    "set-role:prod": "tsx --env-file=.env.production.local scripts/set-role.ts",
+    "deploy:rules": "firebase deploy --only firestore:rules,firestore:indexes"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import { Providers } from "@/components/providers/providers";
 import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
 import "./globals.css";
 
 const sans = DM_Sans({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
@@ -33,6 +34,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es-CO" className={`${sans.variable} ${heading.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        {/* Abre antes las conexiones al mapa y a Firebase para que carguen más rápido. */}
+        <link rel="preconnect" href="https://tile.openstreetmap.org" crossOrigin="" />
+        <link rel="preconnect" href="https://firestore.googleapis.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com" />
+      </head>
       <body className="flex min-h-full flex-col">
         <a
           href="#contenido"
@@ -45,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div id="contenido" className="flex min-w-0 flex-1 flex-col">
             {children}
           </div>
+          <SiteFooter />
         </Providers>
       </body>
     </html>
