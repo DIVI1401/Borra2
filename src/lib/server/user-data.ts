@@ -2,6 +2,7 @@ import "server-only";
 
 import { adminDb } from "@/lib/firebase/admin";
 import { deleteReview } from "@/lib/server/venues";
+import { releaseOwnedVenue } from "@/lib/server/admin";
 
 /**
  * Borra todos los datos personales de una persona (derecho de supresión, Ley 1581).
@@ -32,6 +33,9 @@ export async function deleteAllUserData(uid: string): Promise<void> {
     );
     await batch.commit();
   }
+
+  // Si era dueña de un local, el local queda sin dueño.
+  await releaseOwnedVenue(uid);
 
   // Perfil y sus subcolecciones (favoritos).
   await adminDb.recursiveDelete(adminDb.collection("users").doc(uid));

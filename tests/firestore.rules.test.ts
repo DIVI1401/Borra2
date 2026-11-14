@@ -217,3 +217,32 @@ describe("configuración y registros", () => {
     expect(await read(ana, "adminLogs/x")).toBe(false);
   });
 });
+
+describe("fase 4: paneles", () => {
+  it("el admin cambia el modo demo aunque el servidor haya guardado otros campos", async () => {
+    await write("admin-sdk", "settings/app", { demoMode: false, lastDemoTick: new Ts(new Date()) });
+    expect(await write(admin, "settings/app", { demoMode: true, updatedAt: SERVER_TIME }, { mask: ["demoMode", "updatedAt"] })).toBe(true);
+    expect(await write(admin, "settings/app", { lastDemoTick: null, updatedAt: SERVER_TIME }, { mask: ["lastDemoTick", "updatedAt"] })).toBe(false);
+  });
+  it("el dueño actualiza las fotos de su local (máximo 6)", async () => {
+    const fotos = (n: number) => Array.from({ length: n }, (_, i) => `https://res.cloudinary.com/demo/${i}.jpg`);
+    expect(await write(dueno, "venues/neon41", { photos: fotos(2), updatedAt: SERVER_TIME }, { mask: ["photos", "updatedAt"] })).toBe(true);
+    expect(await write(dueno, "venues/neon41", { photos: fotos(7), updatedAt: SERVER_TIME }, { mask: ["photos", "updatedAt"] })).toBe(false);
+  });
+  it("el dueño consulta la lista de reportes de su local, pero no la de otro", async () => {
+    expect(await list({ ...dueno }, "venues/neon41", "reports", {}, 15)).toBe(true);
+    expect(await list({ ...dueno }, "venues/otro", "reports", {}, 15)).toBe(false);
+  });
+  it("cualquiera puede consultar reseñas de todos los locales (moderación), pero no escribirlas", async () => {
+    expect(await list(null, "venues/neon41", "reviews", {}, 20)).toBe(true);
+  });
+  it("el admin lista solicitudes pendientes; un usuario solo las suyas", async () => {
+    expect(await list(admin, "", "venueClaims", { status: "pending" }, 20)).toBe(true);
+    expect(await list(ana, "", "venueClaims", { status: "pending" }, 20)).toBe(false);
+    expect(await list(ana, "", "venueClaims", { uid: "ana" }, 10)).toBe(true);
+  });
+  it("un usuario no puede listar a todos los usuarios; el admin sí", async () => {
+    expect(await list(ana, "", "users", {}, 20)).toBe(false);
+    expect(await list(admin, "", "users", {}, 20)).toBe(true);
+  });
+});

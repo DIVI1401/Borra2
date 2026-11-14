@@ -238,6 +238,12 @@ service cloud.firestore {
       allow delete: if signedIn() && resource.data.uid == request.auth.uid;
     }
 
+    // ---------- Reseñas de todos los locales (moderación del admin) ----------
+    // Las reseñas son públicas; esta regla permite consultarlas juntas (collection group).
+    match /{path=**}/reviews/{reviewUid} {
+      allow read: if true;
+    }
+
     // ---------- Registro de acciones de administración (solo servidor) ----------
     match /adminLogs/{logId} {
       allow read: if isAdmin();
